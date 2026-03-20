@@ -62,7 +62,7 @@ app.post('/api/persons', (request, response) => {
         });
     }
 
-    nameExists = persons.find(p => p.name === request.body.name);
+    const nameExists = persons.find(p => p.name === request.body.name);
     if (nameExists) {
         return response.status(400).send({ error: "name must be unique" })
     }
@@ -75,7 +75,7 @@ app.post('/api/persons', (request, response) => {
     response.status(201).json(person);
 })
 
-app.get('(.*)', (req, res) => {
+app.get(/^\/.*$/, (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'dist', 'index.html'))
 })
 
