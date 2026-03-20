@@ -6,7 +6,6 @@ const app = express()
 
 app.use(express.json());
 app.use(cors())
-app.use(express.static('dist'))
 
 morgan.token('body', (req, res) => {
     if (req.method === 'POST') {
@@ -85,4 +84,6 @@ if (process.env.NODE_ENV !== 'test') {
         console.log(`Server running on port ${PORT}`)
     })
 }
+
+
 module.exports = app;
