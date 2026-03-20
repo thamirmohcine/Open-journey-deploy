@@ -1,5 +1,6 @@
 const express = require('express');
 const morgan = require('morgan')
+const path = require('path')
 const cors = require('cors')
 const app = express()
 
@@ -14,7 +15,7 @@ morgan.token('body', (req, res) => {
 })
 
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'))
-
+app.use(express.static(path.join(__dirname, '..', 'dist')))
 let persons = [{
     "id": "1",
     "name": "Arto Hellas",
@@ -74,8 +75,14 @@ app.post('/api/persons', (request, response) => {
     persons = persons.concat(person);
     response.status(201).json(person);
 })
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'dist', 'index.html'))
+})
 
-
-const PORT = process.env.PORT || 3001
-app.listen(PORT);
-console.log(`Server running on port ${PORT}`)
+if (process.env.NODE_ENV !== 'test') {
+    const PORT = process.env.PORT || 3001
+    app.listen(PORT, () => {
+        console.log(`Server running on port ${PORT}`)
+    })
+}
+module.exports = app;
