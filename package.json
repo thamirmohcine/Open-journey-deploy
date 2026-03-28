@@ -2,10 +2,10 @@
     "name": "part3",
     "version": "1.0.0",
     "description": "",
-    "main": "index.js",
+    "main": "api/index.js",
     "scripts": {
-        "start": "node index.js",
-        "dev": "node --watch index.js",
+        "start": "node api/index.js",
+        "dev": "node --watch api/index.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "keywords": [],
@@ -14,7 +14,9 @@
     "packageManager": "pnpm@10.28.0",
     "dependencies": {
         "cors": "^2.8.6",
+        "dotenv": "^17.3.1",
         "express": "^5.2.1",
+        "mongoose": "^9.3.1",
         "morgan": "^1.10.1"
     }
 }
