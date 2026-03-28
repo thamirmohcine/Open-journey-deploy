@@ -1,10 +1,10 @@
 const { Query } = require('mongoose');
+require('dotenv').config();
 const express = require('express');
 const morgan = require('morgan')
 const path = require('path')
 const cors = require('cors')
 const app = express()
-require('dotenv').config();
 
 const Person = require('../models/person');
 
